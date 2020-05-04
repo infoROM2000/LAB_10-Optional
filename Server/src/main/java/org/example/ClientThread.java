@@ -57,11 +57,12 @@ class ClientThread extends Thread {
                             String negru = separat[4];
                             for (Game game : gamesList) {
                                 if (game.getID() == id) {
-                                    if (game.getMutaNegru().equals(negru)) {//cel care solicita sa mute este la tura
-                                        if (negru.equals("1")) {
-                                            game.board[i][j] = 1;
-                                            if (game.verifica(negru, i, j).equals("A castigat negrul")) {
-                                                System.out.print("A castigat negrul");
+                                    if(game.inAsteptare==false){
+                                        if (game.getMutaNegru().equals(negru)) {//cel care solicita sa mute este la tura
+                                            if (negru.equals("1")) {
+                                                game.board[i][j] = 1;
+                                                if (game.verifica(negru, i, j).equals("A castigat negrul")) {
+                                                    System.out.print("A castigat negrul");
                                             } else
                                                 game.setMutaNegru("0"); //acum va trebui sa mute albul
                                         } else {
@@ -75,6 +76,7 @@ class ClientThread extends Thread {
                                     } else {
                                         out.println("Asteptati pe celalalt!");
                                     }
+                                }
                                 }
                                 break;
                             }
